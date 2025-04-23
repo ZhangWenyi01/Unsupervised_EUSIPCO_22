@@ -1,3 +1,4 @@
+import os
 import torch
 import torch.nn as nn
 import numpy as np
@@ -11,8 +12,8 @@ class Pipeline_Offline:
         self.Time = Time
         self.folderName = folderName + '\\'
         self.modelName = modelName
-        self.modelFileName = self.folderName + "model_" + self.modelName + ".pt"
-        self.PipelineName = self.folderName + "pipeline_" + self.modelName + ".pt"
+        self.modelFileName = os.path.join(self.folderName, "model_" + self.modelName + ".pt")
+        self.PipelineName = os.path.join(self.folderName, "pipeline_" + self.modelName + ".pt")
 
     def save(self):
         torch.save(self, self.PipelineName)

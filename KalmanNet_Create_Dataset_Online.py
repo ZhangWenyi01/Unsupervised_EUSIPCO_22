@@ -1,4 +1,5 @@
 import torch
+import os
 from KalmanNet_sysmdl import SystemModel
 from KalmanNet_data import F,H,T_online,m1_0,m2_0,rdB_data,ratio_data,data_file_specification,N_E_online,N_T_online
 from KalmanNet_data import DataGen
@@ -14,9 +15,9 @@ print('Start Dataset Creation:')
 r = 10 ** (-rdB_data / 20)
 q = 10 ** ((ratio_data - rdB_data) / 20)
 
-
 # Filename for dataset
-data_file_name = 'Datasets'+'\\'+ data_file_specification.format(ratio_data,rdB_data,T_online) + '.pt'
+filename = data_file_specification.format(ratio_data, rdB_data, T_online) + '.pt'
+data_file_name = os.path.join('Datasets', filename)
 
 print('Training observation noise 1/R^2:',rdB_data,'[dB]')
 print('Training ratio:', ratio_data, '[dB]')

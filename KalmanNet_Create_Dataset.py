@@ -1,4 +1,5 @@
 import torch
+import os
 from KalmanNet_sysmdl import SystemModel
 from KalmanNet_data import F,H,T,m1_0,m2_0,R_decibel_train_ranges,ratio,data_file_specification
 from KalmanNet_data import DataGen
@@ -18,7 +19,8 @@ for nRdB, rdB in enumerate(R_decibel_train_ranges):
 
 
     # Filename for dataset
-    data_file_name = 'Datasets'+'\\'+ data_file_specification.format(ratio,rdB,T) + '.pt'
+    filename = data_file_specification.format(ratio, rdB, T) + '.pt'
+    data_file_name = os.path.join('Datasets', filename)
 
     print('Training observation noise 1/R^2:',rdB,'[dB]')
     print('Training ratio:', ratio, '[dB]')

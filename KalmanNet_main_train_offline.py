@@ -1,5 +1,6 @@
 from KalmanNet_data import F,H,T,m1_0,m2_0
 import torch
+import os
 import numpy as np
 from KalmanNet_sysmdl import SystemModel
 from Pipeline_Offline import Pipeline_Offline
@@ -26,7 +27,7 @@ for nrdB, rdB in enumerate(R_decibel_train_ranges):
     ssModel.UpdateCovariance_Gain(q,r)
 
     # Load Data
-    data_file_name = 'Datasets'+'\\' + data_file_specification.format(ratio,rdB,T) + '.pt'
+    data_file_name = os.path.join('Datasets', data_file_specification.format(ratio,rdB,T) + '.pt')
     [train_dataset,cv_dataset,test_dataset] = DataLoader(data_file_name)
 
     print('Evaluate Kalman Filter Performance:')
